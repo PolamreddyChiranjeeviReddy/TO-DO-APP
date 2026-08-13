@@ -113,6 +113,8 @@ const HomeScreen = ({ navigation }: Props) => {
   const firstName = user?.name?.split(' ')[0] || 'there';
 
   const toggleComplete = (taskId: string, completed: boolean) => {
+    // Optimistic-feeling toggle: fire the update and only surface an alert
+    // on failure (the store applies the server response on success)
     const result = dispatch(
       editTask({ id: taskId, data: { completed: !completed } })
     );

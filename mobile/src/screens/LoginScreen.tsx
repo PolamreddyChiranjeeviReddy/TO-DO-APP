@@ -34,6 +34,8 @@ const LoginScreen = ({ navigation }: Props) => {
   };
 
   const handleLogin = () => {
+    // Client-side validation mirrors the backend rules so the user gets
+    // instant feedback before any network request is made
     const errors: FieldErrors = {};
     if (!email.trim()) {
       errors.email = 'Email is required';

@@ -5,6 +5,8 @@ import {
   UpdateTaskRequest,
 } from '../types/task';
 
+// CRUD wrappers for the task endpoints. The JWT is attached automatically
+// by the request interceptor in `api.ts`.
 export const fetchTasks = (): Promise<Task[]> =>
   api.get('/tasks').then(res => res.data.data);
 

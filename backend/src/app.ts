@@ -8,9 +8,11 @@ dotenv.config();
 
 const app = express();
 
+// Global middleware: CORS for cross-origin clients + JSON body parsing
 app.use(cors());
 app.use(express.json());
 
+// Simple liveness probe used to verify the API is up
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ success: true, data: { message: 'Server is running' } });
 });

@@ -38,6 +38,8 @@ const RegisterScreen = ({ navigation }: Props) => {
   };
 
   const handleRegister = () => {
+    // Validates all fields up front; the form is only submitted when clean.
+    // Confirm-password is checked client-side only (never sent to the API).
     const errors: FieldErrors = {};
     if (!name.trim()) {
       errors.name = 'Name is required';

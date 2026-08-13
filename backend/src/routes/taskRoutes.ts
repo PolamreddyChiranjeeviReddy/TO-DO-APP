@@ -10,6 +10,7 @@ import { protect } from '../middleware/authMiddleware';
 
 const router = Router();
 
+// All task routes require authentication, applied once here for the whole router
 router.use(protect);
 
 router.route('/').get(getTasks).post(createTask);

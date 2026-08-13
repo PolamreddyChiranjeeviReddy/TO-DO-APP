@@ -10,6 +10,8 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
+// Reusable button: primary/secondary/danger variants, loading spinner and
+// disabled state. Loading and disabled both block taps.
 const Button = ({
   title,
   onPress,

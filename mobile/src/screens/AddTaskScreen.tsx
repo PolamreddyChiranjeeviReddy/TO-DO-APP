@@ -50,6 +50,8 @@ const AddTaskScreen = ({ navigation }: Props) => {
       return;
     }
 
+    // Tags arrive as a comma-separated string and are split into an array here;
+    // empty entries are dropped before hitting the API
     const result = await dispatch(
       addTask({
         title: form.title.trim(),
@@ -65,6 +67,7 @@ const AddTaskScreen = ({ navigation }: Props) => {
       })
     );
 
+    // Only leave the screen once the task was actually persisted
     if (addTask.fulfilled.match(result)) {
       navigation.goBack();
     }

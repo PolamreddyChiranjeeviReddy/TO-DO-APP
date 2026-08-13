@@ -1,3 +1,4 @@
+// Shapes shared by the auth endpoints and the Redux auth slice
 export interface User {
   _id: string;
   name: string;

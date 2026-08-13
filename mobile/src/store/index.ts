@@ -3,6 +3,7 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import authReducer from './authSlice';
 import taskReducer from './taskSlice';
 
+// Central Redux store combining the auth and task slices
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -10,6 +11,7 @@ export const store = configureStore({
   },
 });
 
+// Typed hooks so components never have to annotate dispatch/state manually
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 

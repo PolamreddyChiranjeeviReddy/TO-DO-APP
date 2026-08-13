@@ -13,6 +13,8 @@ import {
   isUnauthorizedError,
 } from '../services/api';
 
+// Auth state machine. `isRestoring` gates the root navigator while the
+// persisted session is loaded on app launch (see restoreSession below).
 interface AuthState {
   user: User | null;
   token: string | null;
@@ -29,6 +31,8 @@ const initialState: AuthState = {
   error: null,
 };
 
+// Login/register: on success the returned JWT is persisted so the session
+// survives an app restart, then the whole response is stored in Redux.
 export const login = createAsyncThunk(
   'auth/login',
   async (data: LoginRequest, { rejectWithValue }) => {
@@ -55,7 +59,9 @@ export const register = createAsyncThunk(
   }
 );
 
-// Called on app launch to restore the persisted session from AsyncStorage
+// Called on app launch to restore the persisted session from AsyncStorage.
+// A stored token is only cleared when the server rejects it (401); transient
+// network errors keep the token so the user isn't logged out accidentally.
 export const restoreSession = createAsyncThunk(
   'auth/restore',
   async (_, { rejectWithValue }) => {

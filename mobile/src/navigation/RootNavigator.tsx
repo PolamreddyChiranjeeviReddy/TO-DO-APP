@@ -9,6 +9,8 @@ const RootNavigator = () => {
   const token = useAppSelector(state => state.auth.token);
   const isRestoring = useAppSelector(state => state.auth.isRestoring);
 
+  // While the persisted session is being restored show a branded splash;
+  // afterwards render the auth flow or the app based on the presence of a token
   if (isRestoring) {
     return (
       <View style={styles.loader}>

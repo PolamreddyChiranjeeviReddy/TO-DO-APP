@@ -9,6 +9,8 @@ import {
 } from '../services/taskService';
 import { getErrorMessage } from '../services/api';
 
+// Task state machine. `loading` covers the initial list fetch while `saving`
+// covers create/update/delete (used to disable buttons during mutations).
 interface TaskState {
   tasks: Task[];
   loading: boolean;
@@ -25,6 +27,7 @@ const initialState: TaskState = {
   mutationError: null,
 };
 
+// Fetch the current user's tasks from the API into the store
 export const loadTasks = createAsyncThunk<Task[], void, { rejectValue: string }>(
   'tasks/load',
   async (_, { rejectWithValue }) => {

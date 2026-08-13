@@ -11,6 +11,8 @@ interface TaskCardProps {
   onToggleComplete?: () => void;
 }
 
+// Tappable summary card for a single task: completion checkbox, title,
+// description snippet, category/deadline meta and a live status label
 const TaskCard = ({ task, onPress, onToggleComplete }: TaskCardProps) => {
   const status = getTaskStatus(task);
 

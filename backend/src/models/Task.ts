@@ -18,6 +18,7 @@ export interface ITask extends Document {
 
 const taskSchema = new Schema<ITask>(
   {
+    // Ownership: every task belongs to exactly one user (indexed for fast lookups)
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -66,6 +67,7 @@ const taskSchema = new Schema<ITask>(
       type: Boolean,
       default: false,
     },
+    // Timestamp recorded whenever the task is (un)completed; null while pending
     completedAt: {
       type: Date,
       default: null,

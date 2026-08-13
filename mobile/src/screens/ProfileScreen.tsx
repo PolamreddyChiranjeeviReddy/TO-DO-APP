@@ -34,6 +34,7 @@ const ProfileScreen = () => {
         text: 'Log Out',
         style: 'destructive',
         onPress: () => {
+          // Clear local task state first, then end the session
           dispatch(resetTasks());
           dispatch(logout());
         },

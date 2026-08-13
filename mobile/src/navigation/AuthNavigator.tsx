@@ -9,6 +9,7 @@ export type AuthStackParamList = {
   Register: undefined;
 };
 
+// Auth flow stack. The root navigator swaps to AppNavigator once a user logs in.
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthNavigator = () => {

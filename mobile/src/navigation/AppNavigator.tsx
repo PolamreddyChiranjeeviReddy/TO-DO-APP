@@ -10,6 +10,7 @@ import { colors, fontWeights } from '../theme/theme';
 export type AppStackParamList = {
   Home: undefined;
   AddTask: undefined;
+  // Detail screens take the task id; the screens read the task from the store
   TaskDetails: { taskId: string };
   EditTask: { taskId: string };
   Profile: undefined;

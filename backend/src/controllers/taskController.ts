@@ -57,6 +57,7 @@ const buildSort = (req: AuthRequest): Record<string, 1 | -1> => {
 };
 
 export const getTasks = async (req: AuthRequest, res: Response): Promise<void> => {
+  // Every query is scoped to the authenticated user, so users can never see each other's tasks
   const filter = buildFilter(req);
   const sort = buildSort(req);
   const tasks = await Task.find(filter).sort(sort);
@@ -80,6 +81,7 @@ export const getTaskById = async (req: AuthRequest, res: Response): Promise<void
 export const createTask = async (req: AuthRequest, res: Response): Promise<void> => {
   const { title, description, dateTime, deadline, priority, category, tags } = req.body;
 
+  // --- Validation with explicit client-friendly errors ---
   if (!title || !title.trim()) {
     res.status(400).json({ success: false, message: 'Title is required' });
     return;
@@ -120,6 +122,7 @@ export const updateTask = async (req: AuthRequest, res: Response): Promise<void>
     return;
   }
 
+  // Only the fields present in the request are patched; absent fields are left untouched
   const { title, description, dateTime, deadline, priority, category, tags, completed } = req.body;
 
   if (title !== undefined) {

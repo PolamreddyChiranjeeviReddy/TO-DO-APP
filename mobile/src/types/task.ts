@@ -1,9 +1,11 @@
 export type Priority = 'LOW' | 'MEDIUM' | 'HIGH';
 
+// Fixed set of categories offered in the task form
 export const CATEGORIES = ['Personal', 'Work', 'Study', 'Other'] as const;
 
 export type TaskStatus = 'pending' | 'completed' | 'overdue';
 
+// Task shape as returned by the API (dates arrive as ISO strings)
 export interface Task {
   _id: string;
   userId: string;

@@ -12,7 +12,8 @@ export const api = axios.create({
   timeout: 15000,
 });
 
-// Attach the stored JWT to every request before it is sent
+// Attach the stored JWT to every request before it is sent,
+// so protected endpoints (tasks, /auth/me) can identify the caller
 api.interceptors.request.use(async config => {
   const token = await AsyncStorage.getItem(TOKEN_KEY);
   if (token) {
@@ -54,7 +55,8 @@ export const getToken = (): Promise<string | null> => AsyncStorage.getItem(TOKEN
 
 export const clearToken = (): Promise<void> => AsyncStorage.removeItem(TOKEN_KEY);
 
-// Normalizes an unknown error into a readable message
+// Normalizes an unknown error into a readable message for UI banners.
+// Prefers the backend's error message, then axios's, then a generic fallback.
 export const getErrorMessage = (error: unknown): string => {
   if (axios.isAxiosError(error)) {
     return error.response?.data?.message || error.message || 'Something went wrong';

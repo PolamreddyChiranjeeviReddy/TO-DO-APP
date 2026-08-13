@@ -7,7 +7,8 @@ export interface AuthRequest extends Request {
   user?: IUser;
 }
 
-// Verifies the Authorization Bearer token and attaches the user to the request
+// Verifies the Authorization Bearer token and attaches the user to the request.
+// Runs before every protected route and every task controller action.
 export const protect = async (
   req: AuthRequest,
   res: Response,

@@ -30,6 +30,7 @@ const EditTaskScreen = ({ route, navigation }: Props) => {
   );
 
   const [form, setForm] = useState<TaskFormValues>({
+    // Pre-fill the form from the task held in the store
     title: task?.title ?? '',
     description: task?.description ?? '',
     dateTime: task?.dateTime ?? null,
@@ -40,6 +41,7 @@ const EditTaskScreen = ({ route, navigation }: Props) => {
   });
   const [titleError, setTitleError] = useState<string>();
 
+  // Guard for the edge case where the task was deleted while this screen was open
   if (!task) {
     return (
       <View style={styles.missing}>

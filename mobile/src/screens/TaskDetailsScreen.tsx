@@ -49,6 +49,7 @@ const TaskDetailsScreen = ({ route, navigation }: Props) => {
     }
   };
 
+  // Destructive action guarded by a confirmation dialog
   const handleDelete = () => {
     Alert.alert('Delete task', 'Are you sure you want to delete this task?', [
       { text: 'Cancel', style: 'cancel' },
